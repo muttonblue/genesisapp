@@ -17,3 +17,4 @@ $git checkout experiment -- app.js # then copy the version of app.js from branch
 
 P.S $git checkout <brachname> -- .
 ###################################################
+master

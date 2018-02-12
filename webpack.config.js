@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
     devtool: 'eval',
-    entry: './src/index.js',
+    entry: './ui/index.js',
     output: {
         publicPath: '/static/',
         path: path.join(__dirname, 'static'),

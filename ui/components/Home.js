@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <h2 className={styles['title']}>
-        Welcome to BabelCoder Wiki!
+        Welcome to Genedis!
       </h2>
     )
   }

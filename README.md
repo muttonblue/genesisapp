@@ -1,6 +1,7 @@
 ## Genesis App ## 
 https://www.babelcoder.com/blog/posts/react-redux-isomorphic-day1-introduction-to-webpack2
 https://www.babelcoder.com/blog/posts/react-redux-isomorphic-day2-introduction-to-react-js
+++ https://reactjs.org/docs/components-and-props.html
 
 ## RUN Mock Users REST API ##
 repository ref : https://github.com/typicode/json-server

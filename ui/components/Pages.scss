@@ -1,0 +1,45 @@
+$border-style: 1px solid #cbcbcb;
+body {
+    font-size: 16px;
+}
+
+.container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: $border-style;
+    td,
+    th {
+        border-left: $border-style;
+        border-width: 0 0 0 1px;
+        font-size: inherit;
+        margin: 0;
+        overflow: visible;
+        padding: 0.5rem 1rem;
+    }
+    thead {
+        background-color: #e0e0e0;
+        color: #000;
+        text-align: left;
+        vertical-align: bottom;
+    }
+}
+
+.button {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    background-color: #e0e0e0;
+    color: #2d3e50;
+    border: none;
+}

@@ -1,9 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
     devtool: 'eval',
-    entry: './ui/index.js',
+    entry: ['./ui/theme/elements.scss', './ui/index.js'],
     output: {
         publicPath: '/static/',
         path: path.join(__dirname, 'static'),
@@ -41,9 +42,22 @@ module.exports = {
                             outputStyle: 'expanded',
                             sourceMap: true
                         }
-                    },
+                    } 
                 ]
             }
         ],
+    },
+    plugins: [new webpack.LoaderOptionsPlugin({
+        options: {
+            postcss: [autoprefixer]
+        }
+    })],
+    devServer: {
+        historyApiFallback: true,
+        proxy: {
+            '/api/*': {
+              target: 'http://127.0.0.1:5000'
+            }
+          }
     }
 };

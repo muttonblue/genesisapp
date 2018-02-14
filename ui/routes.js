@@ -1,7 +1,7 @@
 import React from 'react'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
-import { Pages } from './containers'
+import { Pages, ShowPage, NewPage } from './containers'
 import { App, Home } from './components'
 
 export default () => {
@@ -9,7 +9,10 @@ export default () => {
     <Router history={browserHistory}>
       <Route path='/' component={App}>
       <IndexRoute component={Home} />
-        <Route path='pages' component={Pages} />
+        <route path='pages'>
+          <IndexRoute  component={Pages} />
+          <Route path=':id' component={ShowPage} />
+        </route>
       </Route>
     </Router>
   )

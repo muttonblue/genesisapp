@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import PropTypes from 'prop-types';
 
-export default class Page extends Component {
-    
+export default class Page extends Component { 
+
     static propTypes = {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired
     }
-      
-    render() { 
-        const { id, name } = this.props.page
+
+    render() {
+        const { id, name } = this.props
         return (
         <tr>
             <th>{id}</th>
             <td>{name}</td>
-            <td>
-            <a href='javascript:void(0)'>Show</a>
-            </td>
+            <td><Link to={{ pathname: '/pages/'+ id }} > Show </Link></td>
         </tr>
         )
     }

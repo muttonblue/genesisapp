@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types' 
+ 
+export default class Me extends Component {
+  
+  static propTypes = {
+    name: PropTypes.string.isRequired
+  } 
 
-class Me extends Component {
-    render() {
+  render() {
+      const { name } = this.props
       return (
-        <h2 className={styles['title']}>
-          Welcome to BabelCoder Wiki!
-        </h2>
+        <h2> {name} </h2>
       )
     }
-  }
-  
-  export default Me
+  } 

@@ -4,7 +4,13 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
     devtool: 'eval',
-    entry: ['./ui/theme/elements.scss', './ui/index.js'],
+    entry: [
+        'react-hot-loader/patch', // patch hot-loader
+        'webpack-dev-server/client?http://localhost:8080',
+        'webpack/hot/only-dev-server',
+        './ui/theme/elements.scss',
+        './ui/index.js'
+    ],
     output: {
         publicPath: '/static/',
         path: path.join(__dirname, 'static'),
@@ -42,22 +48,23 @@ module.exports = {
                             outputStyle: 'expanded',
                             sourceMap: true
                         }
-                    } 
+                    }
                 ]
             }
         ],
     },
-    plugins: [new webpack.LoaderOptionsPlugin({
-        options: {
-            postcss: [autoprefixer]
-        }
-    })],
+    plugins: [
+        new webpack.LoaderOptionsPlugin({options: { postcss: [autoprefixer] } }),
+        new webpack.HotModuleReplacementPlugin()
+    ],
     devServer: {
+        hot: true,
+        inline: false,
         historyApiFallback: true,
         proxy: {
             '/api/*': {
-              target: 'http://127.0.0.1:5000'
+                target: 'http://127.0.0.1:5000'
             }
-          }
+        }
     }
 };

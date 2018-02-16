@@ -1,25 +1,28 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types' 
+import { connect } from 'react-redux'
 import fetch from 'isomorphic-fetch'
 import { USERS_ENDPOINT } from '../../constants/endpoints'
+import { loadPages } from '../../actions/page'
 import { Pages } from '../../components'
 
-export default class PagesContainer extends Component {
-  state = {
-    pages: []
+class PagesContainer extends Component {
+
+  static propTypes = {
+    pages: PropTypes.array.isRequired,
+    onLoadPages: PropTypes.func.isRequired
   }
 
-  shouldComponentUpdate(_nextProps, nextState) {
-    return this.state.pages !== nextState.pages;
+  shouldComponentUpdate(nextProps) {
+    return this.props.pages !== nextProps.pages;
   }
 
   onReloadPages = (from) => {
-    fetch(USERS_ENDPOINT)
-      .then((response) => response.json())
-      .then((pages) => this.setState({ pages }))
+    this.props.onLoadPages()
   }
 
   onClearPages = () => {
-    this.setState({ pages : [] });
+    this.props.clearPages()
   }
 
   componentDidMount() {
@@ -28,7 +31,23 @@ export default class PagesContainer extends Component {
 
   render() {
     return (
-      <Pages pages={this.state.pages} onReloadPages={this.onReloadPages} onClearPages={this.onClearPages} />
+      <Pages pages={this.props.pages} onReloadPages={this.onReloadPages} onClearPages={this.onClearPages} />
     )
   }
-}
+}//class
+
+const mapStateToProps = (state) => ({
+  pages: state.pages
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadPages() {
+    dispatch(loadPages())
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PagesContainer)
+ 

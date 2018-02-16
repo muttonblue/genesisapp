@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Button, Table } from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.css'
 import Page from './Page'
- 
+
 const Pages = ( { pages , onReloadPages, onClearPages } ) => {
   return (
     <div>

@@ -3,14 +3,15 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import fetch from 'isomorphic-fetch'
 import { USERS_ENDPOINT } from '../../constants/endpoints'
-import { loadPages } from '../../actions/page'
+import { loadPages, clearPages } from '../../actions/page'
 import { Pages } from '../../components'
 
 class PagesContainer extends Component {
 
   static propTypes = {
     pages: PropTypes.array.isRequired,
-    onLoadPages: PropTypes.func.isRequired
+    onLoadPages: PropTypes.func.isRequired,
+    onClearPages: PropTypes.func.isRequired
   }
 
   shouldComponentUpdate(nextProps) {
@@ -22,7 +23,7 @@ class PagesContainer extends Component {
   }
 
   onClearPages = () => {
-    this.props.clearPages()
+   this.props.onResetPages()
   }
 
   componentDidMount() {
@@ -43,7 +44,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onLoadPages() {
     dispatch(loadPages())
-  }
+  },
+  onResetPages(){
+    dispatch(clearPages())
+  } 
 })
 
 export default connect(

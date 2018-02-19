@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import fetch from 'isomorphic-fetch'
 import { USERS_ENDPOINT } from '../../constants/endpoints'
 import { loadPages, clearPages } from '../../actions/page'
-import { Pages } from '../../components'
+import { Pages, FlashMessage } from '../../components'
 
 class PagesContainer extends Component {
 
   static propTypes = {
     pages: PropTypes.array.isRequired,
     onLoadPages: PropTypes.func.isRequired,
-    onClearPages: PropTypes.func.isRequired
+    onResetPages: PropTypes.func.isRequired
   }
 
   shouldComponentUpdate(nextProps) {
@@ -32,13 +32,16 @@ class PagesContainer extends Component {
 
   render() {
     return (
-      <Pages pages={this.props.pages} onReloadPages={this.onReloadPages} onClearPages={this.onClearPages} />
+      <Pages pages={this.props.pages} 
+      onReloadPages={this.onReloadPages} 
+      onClearPages={this.onClearPages} />
     )
   }
 }//class
 
 const mapStateToProps = (state) => ({
-  pages: state.pages
+  pages: state.pages,
+  flashMessage : state.flashMessage
 })
 
 const mapDispatchToProps = (dispatch) => ({

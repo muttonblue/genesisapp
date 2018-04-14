@@ -1,5 +1,8 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import rootReducer from '../reducers'
+
+const thunk = (store) => (next) => (action) =>
+  typeof action === 'function' ? action(store.dispatch, store.getState) : next(action)
 
 const promise = (store) => {
   const next = store.dispatch
@@ -8,11 +11,12 @@ const promise = (store) => {
       return action.then(next)
     return next(action)
   }
-}
+} 
 
 export default () => {
-  const store = createStore(rootReducer)
-  store.dispatch = promise(store)
+  const middlewares = [thunk]
+  const store = createStore(rootReducer, applyMiddleware(...middlewares) )
+  // store.dispatch = promise(store)
 
   if (module.hot) {
     System.import('../reducers').then(nextRootReducer =>

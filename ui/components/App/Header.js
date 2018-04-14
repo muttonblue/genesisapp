@@ -7,26 +7,26 @@ export default class Header extends Component {
     return (
       <header className={styles['header']}>
         <nav>
-          <Link 
-            to={{ pathname: '/' }}
-            className={styles['brand']}>
-            Genesis
-          </Link>
+          <Link to={{ pathname: '/' }} className={styles['brand']}>Genesis</Link>
           <ul className={styles['menu']}>
             <li className={styles['menu__item']}>
-              <Link
-                to={{ pathname: '/pages' }}
-                className={styles['menu__link']}>
-                All pages
-              </Link>
+              <Link to={{ pathname: '/users' }} className={styles['menu__link']}>Users</Link>
             </li>
             <li className={styles['menu__item']}>
-              <a
-                href='#'
-                className={styles['menu__link']}>
-                About us
-              </a>
+              <Link to={{ pathname: '/pages' }} className={styles['menu__link']}> Pages</Link>
             </li>
+            <li className={styles['menu__item']}>
+              <a href='#' className={styles['menu__link']}> About us </a>
+            </li>
+            <li className={styles['menu__item']}>
+              <Link to={{ pathname: '/OfficeDev' }} className={styles['menu__link']}> OfficeDev</Link>
+            </li>
+            <li className={styles['menu__item']}>
+              <Link to={{ pathname: '/MaterialUI' }} className={styles['menu__link']}> MaterialUI</Link>
+            </li>
+            <li className={styles['menu__item']}>
+              <Link to={{ pathname: '/Reactstrap' }} className={styles['menu__link']}>reactstrap</Link>
+            </li>            
           </ul>
         </nav>
       </header>

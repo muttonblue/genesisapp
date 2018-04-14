@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types' 
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import fetch from 'isomorphic-fetch'
-import { USERS_ENDPOINT } from '../../constants/endpoints'
 import { loadPages, clearPages } from '../../actions/page'
 import { Pages } from '../../components'
 
@@ -11,7 +9,7 @@ class PagesContainer extends Component {
   static propTypes = {
     pages: PropTypes.array.isRequired,
     onLoadPages: PropTypes.func.isRequired,
-    onClearPages: PropTypes.func.isRequired
+    onResetPages : PropTypes.func.isRequired
   }
 
   shouldComponentUpdate(nextProps) {
@@ -22,8 +20,8 @@ class PagesContainer extends Component {
     this.props.onLoadPages()
   }
 
-  onClearPages = () => {
-   this.props.onResetPages()
+  onClearPages = (event) => {
+    this.props.onResetPages()
   }
 
   componentDidMount() {
@@ -32,7 +30,9 @@ class PagesContainer extends Component {
 
   render() {
     return (
-      <Pages pages={this.props.pages} onReloadPages={this.onReloadPages} onClearPages={this.onClearPages} />
+      <Pages pages={this.props.pages}
+        onReloadPages={this.onReloadPages}
+        onClearPages={this.onClearPages} />
     )
   }
 }//class
@@ -45,13 +45,12 @@ const mapDispatchToProps = (dispatch) => ({
   onLoadPages() {
     dispatch(loadPages())
   },
-  onResetPages(){
+  onResetPages() {
     dispatch(clearPages())
-  } 
+  }
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PagesContainer)
- 

@@ -1,10 +1,10 @@
 const initialState = []
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'RECEIVE_PAGES':
-      return action.pages
-    case 'CLEAR_PAGES':
-      return action.pages
+    case 'INITI_USERS':
+      return action.users
+    case 'SEARCH_USERs':
+      return action.users
     default:
       return state
   }

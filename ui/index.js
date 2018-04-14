@@ -14,7 +14,7 @@ render(
 
 if (module.hot) {
     module.hot.accept('./containers/Root', () => {
-      const NextRootApp = require('./containers/Root').default      
+      const NextRootApp = require('./containers/Root').default
       render(
         <AppContainer>
            <NextRootApp />
